@@ -29,7 +29,7 @@ jobs:
       - name: 编译并生成安装包布局 (x64)
         working-directory: python-src/Tools/msi
         shell: powershell
-        run: .\build.bat -x64
+        run: .\build.bat -x64 --no-docs
 
       - name: 收集并上传安装程序产物
         uses: actions/upload-artifact@v4
