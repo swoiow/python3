@@ -1,4 +1,3 @@
-# .github/workflows/build-windows.yml
 name: CI
 
 on:
@@ -22,7 +21,7 @@ jobs:
           mkdir python-src
           tar -xzf Python-3.12.11.tgz -C python-src --strip-components=1
 
-      - name: 安装 MSI 构建依赖
+      - name: 安装 MSI 构建依赖（WiX Toolset 等）
         working-directory: python-src/Tools/msi
         shell: powershell
         run: .\get_externals.bat
@@ -33,11 +32,12 @@ jobs:
         run: .\build.bat -x64
 
       - name: 收集并上传安装程序产物
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: python-3.12.11-win-amd64-installer
-          retention-days: 1
           path: |
             python-src/PCbuild/amd64/en-us/*.exe
             python-src/PCbuild/amd64/en-us/*.msi
             python-src/PCbuild/amd64/en-us/*.cab
+          retention-days: 1
+          compression-level: 0
