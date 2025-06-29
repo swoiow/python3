@@ -35,7 +35,7 @@ jobs:
       - name: 编译并生成安装包布局 (x64)
         working-directory: python-src/Tools/msi
         shell: cmd
-        run: build.bat -x64 --no-include-tests
+        run: build.bat -x64 --no-include-tests --no-docs --no-tcltk --no-include-symbols
 
       - name: 收集并上传安装程序产物
         uses: actions/upload-artifact@v4
