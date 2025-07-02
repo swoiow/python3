@@ -29,7 +29,9 @@ jobs:
       - name: 禁用文档模块（注释 build.bat 中构建 doc 的部分）
         shell: powershell
         run: |
-          (Get-Content python-src/Tools/msi/build.bat) -replace 'call :Build doc %\*', 'REM call :Build doc %*' |
+          (Get-Content python-src/Tools/msi/build.bat) `
+            -replace 'call :Build doc %\*', 'REM call :Build doc %*' `
+            -replace 'call :Build tcltk %\*', 'REM call :Build tcltk %*' |
           Set-Content python-src/Tools/msi/build.bat
 
       - name: 编译并生成安装包布局 (x64)
